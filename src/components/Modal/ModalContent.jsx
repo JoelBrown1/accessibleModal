@@ -1,25 +1,12 @@
 import React, { useRef, useEffect } from "react";
-// import { ModalContext } from "../context/ModalContext";
 import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react";
 
-const ModalContent = ({
-  onSelected,
-  content,
-  onKeydown,
-  onClickOutside,
-  usedKeyboard,
-}) => {
+const ModalContent = ({ onSelected, content, onKeydown, onClickOutside }) => {
   const closeButtonRef = useRef();
-  // const context = useContext(ModalContext);
-  // console.log("what is in the ModalContext: ", context);
   useEffect(() => {
-    console.log("{content} what is the value of usedKeyboard: ", usedKeyboard);
-    // if (usedKeyboard) {
-    // console.log("opened modal using the keyboard");
     closeButtonRef.current.focus();
-    // }
-  }, [usedKeyboard]);
+  }, []);
   return ReactDOM.createPortal(
     <FocusTrap>
       <aside
@@ -45,9 +32,6 @@ const ModalContent = ({
               onSelected(evt);
             }}
           >
-            {/* <span id="close-modal" className="_hide-visual">
-              Close
-            </span> */}
             <svg className="_modal-close-icon" viewBox="0 0 40 40">
               <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
             </svg>

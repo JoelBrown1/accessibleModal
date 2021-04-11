@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 
 const ModalTrigger = ({ title, onSelected, isModalShown, usedKeyboard }) => {
   const buttonRef = useRef();
-  console.log("{trigger} usedkeyboard value: ", usedKeyboard);
   useEffect(() => {
     if (!isModalShown) {
       buttonRef.current.focus();
@@ -16,7 +15,6 @@ const ModalTrigger = ({ title, onSelected, isModalShown, usedKeyboard }) => {
       }}
       onKeyDown={(evt) => {
         evt.persist();
-        console.log("{tigger} onKeyDown event values: ", evt);
         onSelected(evt);
       }}
     >

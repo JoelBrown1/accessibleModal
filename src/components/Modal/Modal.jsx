@@ -1,18 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { ModalContext } from "../context/ModalContext";
 import ModalTrigger from "./ModalTrigger";
 import ModalContent from "./ModalContent";
 
 const Modal = ({ title, content }) => {
   const [isShown, setIsShown] = useState(false);
-  // const [usedKeyboard, setUsedKeyboard] = useState(false);
-  const keyboardUsed = useRef(false);
 
   const showModal = (evt) => {
-    console.log("what is the event that opened the modal: ", evt);
-    if (evt.type === "keydown" && evt.keycode == 13) {
-      // setUsedKeyboard(true);
-      keyboardUsed.current = true;
+    if (evt.type === "keydown" && evt.keycode === 13) {
       setIsShown(!isShown);
     }
 
@@ -46,7 +41,6 @@ const Modal = ({ title, content }) => {
           title={title}
           onSelected={showModal}
           isModalShown={isShown}
-          usedKeyboard={keyboardUsed}
         />
         {isShown && (
           <ModalContent
@@ -54,7 +48,6 @@ const Modal = ({ title, content }) => {
             content={content}
             onKeydown={handleKeyPress}
             onClickOutside={handleClickOutside}
-            usedKeyboard={keyboardUsed}
           />
         )}
       </ModalContext.Provider>
